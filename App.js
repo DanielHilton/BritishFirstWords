@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import {Audio} from 'expo-av';
 import {Button, Image} from "react-native";
-import type {ImageResizeMode} from "react-native/Libraries/Image/ImageResizeMode";
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -11,9 +10,12 @@ const instructions = Platform.select({
 
 async function meow() {
   const sound = new Audio.Sound();
+  const meowSound = new Audio.Sound();
   try {
     await sound.loadAsync(require('./sounds/cat.aac'));
     await sound.playAsync();
+    await meowSound.loadAsync(require('./sounds/meow.mp3'));
+    await meowSound.playAsync();
   } catch {
     console.log('fuckity fuck');
   }
